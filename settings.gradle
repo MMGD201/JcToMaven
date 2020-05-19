@@ -1,0 +1,2 @@
+include ':app', ':jctomc'
+rootProject.name='JcToMaven'
