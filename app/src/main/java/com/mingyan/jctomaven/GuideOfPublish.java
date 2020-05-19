@@ -64,6 +64,11 @@ public class GuideOfPublish {
  *
  * 第5部分：將庫上傳到您的Bintray空間
  * 轉到Android Studio上的Terminal，檢查代碼的正確性並構建庫文件，輸入命令gradlew install，沒錯將顯示BUILD SUCCESSFUL，
- * 將生成的文件上傳到bintray，輸入gradlew bintrayUpload 沒錯將顯示 SUCCESSFUL。
- * 到此Library尚未發到Maven Central，也沒在jcenter。*/
+ * 將生成的文件上傳到bintray，輸入gradlew bintrayUpload 沒錯將顯示 BUILD SUCCESSFUL，代表已上傳到bintray。
+ * 到此Library尚未發到Maven Central，也沒在jcenter。
+ *
+ * 第6部分：將Bintray用戶存儲庫同步到jcenter
+ * 點進Bintray的xxxPackage(Maven) > 再點進該Library > Linked to (阿拉伯數字x)的右邊 > 點Add to JCenter > 畫面轉跳後直接點Send不用特別作什麼。
+ * 至此等待2-3個小時(00:45+[2-3]=2:45-3:45)，讓Bintray小組批准我們的請求。同步請求獲得批准後，您將收到一封電子郵件，通知您進行更改。現在讓我們檢查Web界面，您將在剛剛的Linked To  部分中看到一些更改，
+ * 實際等了1.5小時左右獲得批准，註冊Bintray的mail和Bintray都會收到通知，Linked To(數字有變) 右邊不再是Add to JCenter變成Stage snapshots on oss.jfrog.org。*/
 }
