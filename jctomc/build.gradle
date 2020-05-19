@@ -32,3 +32,31 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }
+
+//publish jcenter
+ext {
+    bintrayRepo = 'simple_repositiory'//bintray的package name，錯了會Could not sign version '0.1.0': HTTP/1.1 404 Not Found [message:Repo 'maven' was not found]
+    bintrayName = 'jctomc'
+
+    publishedGroupId = 'com.github.mmgd201'//只有publish JCenter可以自己瞎掰GroupId:com.larva.flying，但上次傳JCenter成功傳MavenCenter fail所以這次測試用相同的GroupId
+    libraryName = 'jctomc'
+    artifact = 'jctomc'
+
+    libraryDescription = 'try publish on JCenter'
+
+    siteUrl = 'https://github.com/MMGD201/JcToMaven'
+    gitUrl = 'https://github.com/MMGD201/JcToMaven.git'
+
+    libraryVersion = '0.1.0'
+
+    developerId = 'ijnijn006'
+    developerName = 'jhou min yan'
+    developerEmail = 'ijnijn006@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'//nuuneoi不用改
+//publish jcenter
