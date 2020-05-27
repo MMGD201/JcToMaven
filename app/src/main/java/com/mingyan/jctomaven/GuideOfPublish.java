@@ -25,12 +25,18 @@ public class GuideOfPublish {
  * 因為有創過Bintray & Sonatype帳號，直接從第二步的Sonatype web創 Issues開始進行，
  * --必填欄位...填完按Create--
  * Summary: Request a permission to distribute library to Maven Central.  [  Summary可以隨便輸入 ]
- * GroupId: com.github.mmgd201    [ 因為怕publish到Maven Center的Domain不能瞎掰所以，GroupId用GitHub創的帳號 ]
+ * GroupId: com.github.mmgd201    [ 雖然只上傳JCenter可以跳過二和三部分且GroupId是由第四部份的說明來填寫，
+ *                                  但是因為怕publish到Maven Center的Domain不能瞎掰也未清楚是否互相引響所以本次，GroupId用GitHub創的帳號 ]
  * Project URL: https://github.com/MMGD201/JcToMaven
  * SCM url: https://github.com/MMGD201/JcToMaven.git
  * ----------------------------------
  * 再來去Bintray的下拉有登出選項處選Edit Profile > Accounts > 選google登入、選GitHub登入, 都按授權，
  * 然後Sonatype OSS User填sonatype帳號名，Sonatype OSS password填sonatype密碼，按Update。
+ * 這嘗試了第2次都是有留言說要於GitHub帳號下再創一個名為OSSRH_xxxxx的公共倉庫以驗證github帳戶的所有權，
+ * 並留言創好了才會收到以下回復
+ * Configuration has been prepared, now you can :
+ *     Deploy snapshot artifacts into repository，https://oss.sonatype.org/content/repositories/snapshots
+ *     Deploy release artifacts into the staging repository，https://oss.sonatype.org/service/local/staging/deploy/maven2
  *
  * 第3部分：在Bintray中啟用自動簽名
  * 由於已經按以下說明用過所以本次跳過不重複以看能否成功。
@@ -68,7 +74,13 @@ public class GuideOfPublish {
  * 到此Library尚未發到Maven Central，也沒在jcenter。
  *
  * 第6部分：將Bintray用戶存儲庫同步到jcenter
- * 點進Bintray的xxxPackage(Maven) > 再點進該Library > Linked to (阿拉伯數字x)的右邊 > 點Add to JCenter > 畫面轉跳後直接點Send不用特別作什麼。
- * 至此等待2-3個小時(00:45+[2-3]=2:45-3:45)，讓Bintray小組批准我們的請求。同步請求獲得批准後，您將收到一封電子郵件，通知您進行更改。現在讓我們檢查Web界面，您將在剛剛的Linked To  部分中看到一些更改，
- * 實際等了1.5小時左右獲得批准，註冊Bintray的mail和Bintray都會收到通知，Linked To(數字有變) 右邊不再是Add to JCenter變成Stage snapshots on oss.jfrog.org。*/
+ * 點進Bintray的xxxPackage(Maven) > 再點進該Library > Linked to (阿拉伯數字x)的右邊 > 點Add to JCenter(改在在右上帳號icon 帳號xxx的下面有Actions下拉才有Add to JCenter) > 畫面轉跳後直接點Send不用特別作什麼。
+ * 說是等待2-3個小時(03:11+[2~3]=05:11~06:11)，讓Bintray小組批准我們的請求。同步請求獲得批准後，您將收到一封電子郵件，通知您進行更改。現在讓我們檢查Web界面，您將在剛剛的Linked To  部分中看到一些更改，
+ * 實際等了7小時33分獲得批准，註冊Bintray的mail和Bintray都會收到通知，Linked To(數字有變) 右邊不再是Add to JCenter變成Stage snapshots on oss.jfrog.org或是Stage Snapshots，
+ * 目前到此收到Bintray的mail後不論是否有跳過二 ~ 三部分publish JCenter成功了，
+ * 注意本次Library與之前Library publish on JCenter的GroupId是不同的，所以暫時表示每次創不同Library來publish JCenter是可用不同GroupId。
+ * [ https://stackoverflow.com/questions/41084693/how-to-update-library-for-new-version-in-bintray   20200520/11:45再次Try to add version很快就依賴成功 ]，
+ * update version on JCenter就是改build.gradle(Module:toasttalk)的 ext{ libraryVersion = 'x.x.x' ，改GroupId不能生效本次沒改, version '0.1.3' 改GroupId真的沒用}
+ * ，再點進Bintray的xxxPackage(Maven)或 xxxRepositiory(Maven) > 點選Package Name這邊是toasttalk > 點Add Version > Name填 version , 選日期 , 填描述 > 按Create Version
+ * ，用Android Studio的Terminal輸入gradlew bintrayUpload顯示BUILD SUCCESSFUL很快就可以依賴成功。*/
 }
